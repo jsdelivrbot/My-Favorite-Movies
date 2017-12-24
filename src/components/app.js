@@ -120,11 +120,17 @@ class App extends Component {
     }
 
     onMovieSave() {
-        const movie = this.state.selectedMovie;
+        const selectedMovie = this.state.selectedMovie;
         let newState = { buttonClick: true };
+        const movie = this.state.favoriteMovies.find( m => m.id === selectedMovie.id );
 
-        if ( undefined === this.state.favoriteMovies.find( m => m.id === movie.id ) )
-            newState.favoriteMovies = [ ...this.state.favoriteMovies, movie ];
+        if ( undefined === movie )
+            newState.favoriteMovies = [ ...this.state.favoriteMovies, selectedMovie ];
+        else {
+            movie.comment = selectedMovie.comment;
+            movie.rating = selectedMovie.rating;
+        }
+
         this.setState(
             newState,
             () => {

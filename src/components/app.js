@@ -121,22 +121,17 @@ class App extends Component {
 
     onMovieSave() {
         const movie = this.state.selectedMovie;
+        let newState = { buttonClick: true };
 
-        if( undefined === this.state.favoriteMovies.find( m => m.id === movie.id ) ) {
-            const favoriteMovies = [ ...this.state.favoriteMovies, movie ];
-            this.setState(
-                { buttonClick: true, favoriteMovies },
-                () => {
-                    this.saveMovies();
-                    alert( SAVE_MOVIE );
-                }
-            );
-        }
-        else
-            this.setState(
-                { buttonClick: true },
-                () => alert( SAVE_MOVIE )
-            );
+        if ( undefined === this.state.favoriteMovies.find( m => m.id === movie.id ) )
+            newState.favoriteMovies = [ ...this.state.favoriteMovies, movie ];
+        this.setState(
+            newState,
+            () => {
+                this.saveMovies();
+                alert( SAVE_MOVIE );
+            }
+        )
     }
 
     onMovieRemove() {

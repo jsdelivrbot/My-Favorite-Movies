@@ -122,7 +122,7 @@ class App extends Component {
     onMovieSave() {
         const movie = this.state.selectedMovie;
 
-        if( -1 === this.state.favoriteMovies.indexOf( movie ) ) {
+        if( undefined === this.state.favoriteMovies.find( m => m.id === movie.id ) ) {
             const favoriteMovies = [ ...this.state.favoriteMovies, movie ];
             this.setState(
                 { buttonClick: true, favoriteMovies },
@@ -140,19 +140,19 @@ class App extends Component {
     }
 
     onMovieRemove() {
-        const movie = this.state.selectedMovie, index = this.state.favoriteMovies.indexOf( movie );
+        const movie = this.state.selectedMovie;
 
-        if( -1 !== index ) {
-            const favoriteMovies = this.state.favoriteMovies.filter( m => m !== movie );
+        if( undefined === this.state.favoriteMovies.find( m => m.id === movie.id ) ) {
+            this.setState( { buttonClick: true } );
+            alert( MOVIE_UNFOUND );
+        }
+        else {
+            const favoriteMovies = this.state.favoriteMovies.filter( m => m.id !== movie.id );
             this.setState(
                 { buttonClick: true, favoriteMovies },
                 this.saveMovies
             );
             alert( REMOVE_MOVIE );
-        }
-        else {
-            this.setState( { buttonClick: true } );
-            alert( MOVIE_UNFOUND );
         }
     }
 

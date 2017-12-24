@@ -5,7 +5,7 @@ A user can search for movies, add those to a preference list with personal comme
 
 This is a demo app of React-Redux front-end framework with NodeJS as backend, transacting to THE MOVIE DB and YouTube using the REST APIs.
 
-Usage Instruction:
+Usage Instructions:
 - download the source codes
 - open a CLI console, navigate to the project folder and run the "npm start" command (NodeJS must be installed)
 - in an internet browser

@@ -1,0 +1,41 @@
+
+.search-bar {
+    margin: 20px;
+}
+
+.search-bar input {
+    width: 66%;
+}
+
+.video-item img {
+    max-width: 64px;
+}
+
+.video-detail .details {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+ul {
+    height: 750px;
+    overflow-y: auto;
+    padding: 0
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item-override {
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    background-color: #eee;
+}
+
+.text-attribute {
+    font-size: x-small;
+}

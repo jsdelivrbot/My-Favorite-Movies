@@ -13,7 +13,7 @@ Usage Instruction:
   2) type a keyword in the search bar and wait for the result
   3) scroll down the search list (if there are search results) and select an item of interest (the movie panel as the page's body will render a YouTube movie trailer and will also show the movie profile from the THE MOVIE DB website)
   4) click the star rating and add a comment
-  5) at the bottom of the movie panel are the buttons to add/remove the selected movie to/from the preference list; another button is provided to clear the preference list
+  5) at the bottom of the movie panel are the buttons to add/remove a selected movie to/from the preference list; another button is provided to clear the preference list
   6) to browse the preference list, click the "Favorites" tab.
   
   

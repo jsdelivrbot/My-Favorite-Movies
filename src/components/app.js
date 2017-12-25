@@ -54,17 +54,26 @@ class App extends Component {
                             if ( page < totalPages )
                                 this.props.fetchMovies( this.state.searchKeyword, page + 1 );
                             else if ( page === totalPages && !this.state.searchDone ) {
-                                let selectedMovie = null;
-                                if ( this.state.movies.length )
-                                    this.props.fetchTrailers( ( selectedMovie = this.state.movies[ 0 ] ).id )
-                                this.setState(
-                                    {
-                                        buttonClick: false,
-                                        endTime    : new Date(),
-                                        searchDone : true, searchStarted: false,
-                                        selectedMovie
-                                    },
-                                );
+                                let newState = {
+                                    buttonClick: false,
+                                    endTime    : new Date(),
+                                    searchDone : true, searchStarted: false,
+                                };
+                                if ( this.state.movies.length ) {
+                                    const selectedMovie = this.state.movies[ 0 ];
+                                    const id = selectedMovie.id;
+                                    let movie = this.state.favoriteMovies.find( m => id === m.id );
+                                    if ( undefined === movie )
+                                        newState.selectedMovie = selectedMovie;
+                                    else {
+                                        newState.selectedMovie = movie;
+                                        newState.movies = [ movie, ...this.state.movies.slice( 1 ) ];
+                                    }
+                                    this.props.fetchTrailers( id );
+                                }
+                                else
+                                    newState.selectedMovie = null;
+                                this.setState( newState );
                                 searchData.page = 2;
                             }
                         }
@@ -115,8 +124,23 @@ class App extends Component {
     }
 
     onMovieSelect( movie ) {
-        this.props.fetchTrailers( movie.id );
-        this.setState( { buttonClick: false, selectedMovie: movie } );
+        let newState = { buttonClick: false };
+        const id = movie.id;
+        const fmovie = this.state.favoriteMovies.find( m => id === m.id );
+        if ( fmovie && movie !== fmovie ) {
+            const index = this.state.movies.findIndex( m => id === m.id );
+            newState.selectedMovie = fmovie;
+            newState.movies = [
+                ...this.state.movies.slice( 0, index ),
+                fmovie,
+                ...this.state.movies.slice( index + 1 )
+            ];
+        }
+        else
+            newState.selectedMovie = movie;
+        
+        this.props.fetchTrailers( id );
+        this.setState( newState );
     }
 
     onMovieSave() {
@@ -126,10 +150,6 @@ class App extends Component {
 
         if ( undefined === movie )
             newState.favoriteMovies = [ ...this.state.favoriteMovies, selectedMovie ];
-        else {
-            movie.comment = selectedMovie.comment;
-            movie.rating = selectedMovie.rating;
-        }
 
         this.setState(
             newState,

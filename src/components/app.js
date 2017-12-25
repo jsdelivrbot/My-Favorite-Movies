@@ -7,12 +7,14 @@ import ListPanel    from './list_panel';
 import MoviePanel   from './movie_panel';
 import SearchBar    from './search_bar';
 
-const SAVE_MOVIE          = 'Saved the selected movie to your list of favorite movies.';
-const REMOVE_MOVIE        = 'The selected movie is removed from your list of favorite movies.';
-const MOVIE_UNFOUND       = 'The selected movie is not yet included in your list of favorite movies.';
+const CLEAR_FAVE_MOVIES   = 'Are you sure you want to remove all your favorite movies?';
+const FAVE_MOVIE_KEY      = 'favoriteMovies';
 const FAVE_MOVIES_CLEARED = 'Cleared your list of favorite movies.';
 const FAVE_MOVIES_NON     = 'There is nothing to be cleared in your list of favorite movies.';
-const FAVE_MOVIE_KEY      = 'favoriteMovies';
+const MOVIE_REMOVED       = 'The selected movie is removed from your list of favorite movies.';
+const MOVIE_UNFOUND       = 'The selected movie is not yet included in your list of favorite movies.';
+const REMOVE_MOVIE_YESNO  = 'Are you sure you want to remove the selected movie from your list of favorite movies?';
+const SAVE_MOVIE          = 'Saved the selected movie to your list of favorite movies.';
 
 
 class App extends Component {
@@ -167,21 +169,23 @@ class App extends Component {
             this.setState( { buttonClick: true } );
             alert( MOVIE_UNFOUND );
         }
-        else {
+        else if ( confirm( REMOVE_MOVIE_YESNO ) ) {
             const favoriteMovies = this.state.favoriteMovies.filter( m => m.id !== movie.id );
             this.setState(
                 { buttonClick: true, favoriteMovies },
                 this.saveMovies
             );
-            alert( REMOVE_MOVIE );
+            alert( MOVIE_REMOVED );
         }
     }
 
     onFavoritesClear() {
         if ( this.state.favoriteMovies.length ) {
-            localStorage.removeItem( FAVE_MOVIE_KEY );
-            this.setState( { buttonClick: true, favoriteMovies: [] } );
-            alert( FAVE_MOVIES_CLEARED );
+            if ( confirm( CLEAR_FAVE_MOVIES ) ) {
+                localStorage.removeItem( FAVE_MOVIE_KEY );
+                this.setState( { buttonClick: true, favoriteMovies: [] } );
+                alert( FAVE_MOVIES_CLEARED );
+            }
         }
         else
             alert( FAVE_MOVIES_NON );

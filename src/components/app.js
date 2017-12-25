@@ -39,50 +39,9 @@ class App extends Component {
     }
 
     render() {
-        let searchData = this.props.movieSearchData, page = searchData.page;
+        let searchData = this.props.movieSearchData;
 
-        // refresh the previously cached movie search
-        if ( page - this.state.page > 1 || ( this.state.searchDone && !this.state.searchStarted ) )
-            page = searchData.page = 0, searchData.results = [], searchData.total_pages = 2;
-
-        // fetch the rest of the search results
-        if ( page && page <= searchData.total_pages && this.state.page < page ) {
-            setImmediate(
-                () => {
-                    this.setState(
-                        { buttonClick: false, page, movies: [ ...this.state.movies, ...searchData.results ] },
-                        () => {
-                            const totalPages = searchData.total_pages;
-                            if ( page < totalPages )
-                                this.props.fetchMovies( this.state.searchKeyword, page + 1 );
-                            else if ( page === totalPages && !this.state.searchDone ) {
-                                let newState = {
-                                    buttonClick: false,
-                                    endTime    : new Date(),
-                                    searchDone : true, searchStarted: false,
-                                };
-                                if ( this.state.movies.length ) {
-                                    const selectedMovie = this.state.movies[ 0 ];
-                                    const id = selectedMovie.id;
-                                    let movie = this.state.favoriteMovies.find( m => id === m.id );
-                                    if ( undefined === movie )
-                                        newState.selectedMovie = selectedMovie;
-                                    else {
-                                        newState.selectedMovie = movie;
-                                        newState.movies = [ movie, ...this.state.movies.slice( 1 ) ];
-                                    }
-                                    this.props.fetchTrailers( id );
-                                }
-                                else
-                                    newState.selectedMovie = null;
-                                this.setState( newState );
-                                searchData.page = 2;
-                            }
-                        }
-                    );
-                }
-            );
-        }
+        this.interpolate( searchData );
 
         return (
             <div>
@@ -189,6 +148,53 @@ class App extends Component {
         }
         else
             alert( FAVE_MOVIES_NON );
+    }
+
+    interpolate( searchData ) {
+        let page = searchData.page;
+
+        // refresh the previously cached movie search
+        if ( page - this.state.page > 1 || ( this.state.searchDone && !this.state.searchStarted ) )
+            page = searchData.page = 0, searchData.results = [], searchData.total_pages = 2;
+
+        // fetch the rest of the search results
+        if ( page && page <= searchData.total_pages && this.state.page < page ) {
+            setImmediate(
+                () => {
+                    this.setState(
+                        { buttonClick: false, page, movies: [ ...this.state.movies, ...searchData.results ] },
+                        () => {
+                            const totalPages = searchData.total_pages;
+                            if ( page < totalPages )
+                                this.props.fetchMovies( this.state.searchKeyword, page + 1 );
+                            else if ( page === totalPages && !this.state.searchDone ) {
+                                let newState = {
+                                    buttonClick: false,
+                                    endTime    : new Date(),
+                                    searchDone : true, searchStarted: false,
+                                };
+                                if ( this.state.movies.length ) {
+                                    const selectedMovie = this.state.movies[ 0 ];
+                                    const id = selectedMovie.id;
+                                    let movie = this.state.favoriteMovies.find( m => id === m.id );
+                                    if ( undefined === movie )
+                                        newState.selectedMovie = selectedMovie;
+                                    else {
+                                        newState.selectedMovie = movie;
+                                        newState.movies = [ movie, ...this.state.movies.slice( 1 ) ];
+                                    }
+                                    this.props.fetchTrailers( id );
+                                }
+                                else
+                                    newState.selectedMovie = null;
+                                this.setState( newState );
+                                searchData.page = 2;
+                            }
+                        }
+                    );
+                }
+            );
+        }
     }
 
     saveMovies() {

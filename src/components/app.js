@@ -9,12 +9,12 @@ import SearchBar    from './search_bar';
 
 const CLEAR_FAVE_MOVIES   = 'Are you sure you want to remove all your favorite movies?';
 const FAVE_MOVIE_KEY      = 'favoriteMovies';
-const FAVE_MOVIES_CLEARED = 'Cleared your list of favorite movies.';
+const FAVE_MOVIES_CLEARED = 'Your list of favorite movies is cleared.';
 const FAVE_MOVIES_NON     = 'There is nothing to be cleared in your list of favorite movies.';
 const MOVIE_REMOVED       = 'The selected movie is removed from your list of favorite movies.';
 const MOVIE_UNFOUND       = 'The selected movie is not yet included in your list of favorite movies.';
 const REMOVE_MOVIE_YESNO  = 'Are you sure you want to remove the selected movie from your list of favorite movies?';
-const SAVE_MOVIE          = 'Saved the selected movie to your list of favorite movies.';
+const SAVE_MOVIE          = 'The selected movie is saved to your list of favorite movies.';
 
 
 class App extends Component {

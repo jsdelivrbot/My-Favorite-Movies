@@ -7,7 +7,7 @@ This is a demo app of ES6, Bootstrap, React-Redux front-end framework with NodeJ
 
 Usage Instructions:
 - download the source codes
-- open a CLI console, navigate to the project folder and run the "npm start" command (NodeJS must be installed)
+- open a CLI console, navigate to the project folder and run the "npm install" and "npm start" commands (NodeJS must be installed)
 - in an internet browser (use Google's Chrome because it supports the modern browser features)
   1) type localhost:8080 to the address bar
   2) type a keyword in the search bar and wait for the result

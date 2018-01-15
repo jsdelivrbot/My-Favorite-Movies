@@ -16,14 +16,15 @@ export default class MovieList extends Component {
         const movies = this.props.movies;
         return (
             <div>
-                <MediaQuery minDeviceWidth={1224}>
+                <MediaQuery minDeviceWidth={ 1224 }>
                     <div className='list-group'>
                         <label className='text-attribute'>{ this.props.label }</label>
                         { movies.length ? <ul>{ movies.map( this.renderMovie ) }</ul> : '' }
                     </div>
                 </MediaQuery>
-                <MediaQuery maxDeviceWidth={1224}>
-                    <div className='list-group-mobile'>
+
+                <MediaQuery maxDeviceWidth={ 1224 }>
+                    <div className='full-width'>
                         <label className='text-attribute'>{ this.props.label }</label>
                         { movies.length ? <ul>{ movies.map( this.renderMovie ) }</ul> : '' }
                     </div>

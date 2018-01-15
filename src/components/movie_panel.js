@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import MediaQuery           from 'react-responsive';
 
 import CommentAndRating from './comment_rating';
 import MovieProfile     from './movie_profile';
@@ -48,27 +49,58 @@ export default class MoviePanel extends Component {
                             onCommentChange={ this.onCommentChange }
                             onRatingChange ={ this.onRatingChange }
                             />
-                        <button
-                            className='btn btn-secondary'
 
-                            onClick  ={ this.props.onMovieSave }
-                            >
-                            Save to favorite movies
-                        </button>
-                        <button
-                            className='btn btn-secondary'
+                        <MediaQuery minDeviceWidth={ 1224 }>
+                            <div>
+                                <button
+                                    className='btn btn-secondary'
 
-                            onClick  ={ this.props.onMovieRemove }
-                            >
-                            Remove from favorite movies
-                        </button>
-                        <button
-                            className='btn btn-secondary'
+                                    onClick  ={ this.props.onMovieSave }
+                                    >
+                                    Save to favorite movies
+                                </button>
+                                <button
+                                    className='btn btn-secondary'
 
-                            onClick={ this.props.onFavoritesClear }
-                            >
-                            Clear favorite movies
-                        </button>
+                                    onClick  ={ this.props.onMovieRemove }
+                                    >
+                                    Remove from favorite movies
+                                </button>
+                                <button
+                                    className='btn btn-secondary'
+
+                                    onClick={ this.props.onFavoritesClear }
+                                    >
+                                    Clear favorite movies
+                                </button>
+                            </div>
+                        </MediaQuery>
+
+                        <MediaQuery maxDeviceWidth={ 1224 }>
+                            <div>
+                                <button
+                                    className='btn btn-secondary full-width'
+
+                                    onClick  ={ this.props.onMovieSave }
+                                    >
+                                    Save to favorite movies
+                                </button>
+                                <button
+                                    className='btn btn-secondary full-width'
+                                    
+                                    onClick  ={ this.props.onMovieRemove }
+                                    >
+                                    Remove from favorite movies
+                                </button>
+                                <button
+                                    className='btn btn-secondary full-width'
+                                    
+                                    onClick={ this.props.onFavoritesClear }
+                                    >
+                                    Clear favorite movies
+                                </button>
+                            </div>
+                        </MediaQuery>
                     </div>
                     : ''
                 }

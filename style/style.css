@@ -1,4 +1,8 @@
 
+.full-width {
+    width: 100%;
+}
+
 .list-group {
     width: 150px;
 }
@@ -13,10 +17,6 @@
 
 .list-group-item:hover {
     background-color: #eee;
-}
-
-.list-group-mobile {
-    width: 100%;
 }
 
 .list-panel {

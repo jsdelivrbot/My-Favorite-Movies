@@ -14,7 +14,7 @@ export default class MovieList extends Component {
     render() {
         const movies = this.props.movies;
         return (
-            <div className='col-md-2 list-group'>
+            <div className='list-group'>
                 <label className='text-attribute'>{ this.props.label }</label>
                 { movies.length ? <ul>{ movies.map( this.renderMovie ) }</ul> : '' }
             </div>

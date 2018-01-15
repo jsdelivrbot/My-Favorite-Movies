@@ -1,20 +1,22 @@
 
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import MediaQuery           from 'react-responsive';
 
 import * as actions from '../actions';
 import ListPanel    from './list_panel';
 import MoviePanel   from './movie_panel';
 import SearchBar    from './search_bar';
-
-const CLEAR_FAVE_MOVIES   = 'Are you sure you want to remove all your favorite movies?';
-const FAVE_MOVIE_KEY      = 'favoriteMovies';
-const FAVE_MOVIES_CLEARED = 'Your list of favorite movies is cleared.';
-const FAVE_MOVIES_NON     = 'There is nothing to be cleared in your list of favorite movies.';
-const MOVIE_REMOVED       = 'The selected movie is removed from your list of favorite movies.';
-const MOVIE_UNFOUND       = 'The selected movie is not yet included in your list of favorite movies.';
-const REMOVE_MOVIE_YESNO  = 'Are you sure you want to remove the selected movie from your list of favorite movies?';
-const SAVE_MOVIE          = 'The selected movie is saved to your list of favorite movies.';
+import {
+    CLEAR_FAVE_MOVIES,
+    FAVE_MOVIE_KEY,
+    FAVE_MOVIES_CLEARED,
+    FAVE_MOVIES_NON,
+    MOVIE_REMOVED,
+    MOVIE_UNFOUND,
+    REMOVE_MOVIE_YESNO,
+    SAVE_MOVIE
+} from '../constants/constants';
 
 
 class App extends Component {
@@ -45,27 +47,56 @@ class App extends Component {
 
         return (
             <div>
-                <SearchBar onSearch={ this.onSearch }/>
+                <div className='row col-md-8 search-bar-parent'>
+                    <SearchBar onSearch={ this.onSearch }/>
+                </div>
 
-                <MoviePanel
-                    favoriteMovies  ={ this.state.favoriteMovies }
-                    movie           ={ this.state.selectedMovie }
-                    playTrailer     ={ this.props.trailerSearchData }
+                <div className='row'>
+                    <div className='col-md-8'>
+                        <MoviePanel
+                            favoriteMovies  ={ this.state.favoriteMovies }
+                            movie           ={ this.state.selectedMovie }
+                            playTrailer     ={ this.props.trailerSearchData }
 
-                    onFavoritesClear={ this.onFavoritesClear }
-                    onMovieRemove   ={ this.onMovieRemove }
-                    onMovieSave     ={ this.onMovieSave }
-                    />
+                            onFavoritesClear={ this.onFavoritesClear }
+                            onMovieRemove   ={ this.onMovieRemove }
+                            onMovieSave     ={ this.onMovieSave }
+                            />
+                    </div>
 
-                <ListPanel
-                    activeTab     ={ this.getActiveTab() }
-                    favoriteMovies={ this.state.favoriteMovies }
-                    favoritesLabel={ 'Favorite Movies (' + this.state.favoriteMovies.length + ')' }
-                    searchLabel   ={ this.getSearchLabel( searchData ) }
-                    searchMovies  ={ this.state.searchDone && searchData && this.state.movies }
+                    <div className='col-md-4 list-panel'>
+                        <ListPanel
+                            activeTab     ={ this.getActiveTab() }
+                            favoriteMovies={ this.state.favoriteMovies }
+                            favoritesLabel={ 'Favorite Movies (' + this.state.favoriteMovies.length + ')' }
+                            searchLabel   ={ this.getSearchLabel( searchData ) }
+                            searchMovies  ={ this.state.searchDone && searchData && this.state.movies }
 
-                    onMovieSelect ={ this.onMovieSelect }
-                    />
+                            onMovieSelect ={ this.onMovieSelect }
+                            />
+                    </div>
+                </div>
+
+                <div>Device Test!</div>
+
+                <MediaQuery minDeviceWidth={1224}>
+                    <div>You are a desktop or laptop</div>
+                </MediaQuery>
+                <MediaQuery maxDeviceWidth={1224}>
+                    <div>You are a tablet or mobile phone</div>
+                </MediaQuery>
+
+                <MediaQuery orientation='portrait'>
+                    <div>You are portrait</div>
+                </MediaQuery>
+                <MediaQuery orientation='landscape'>
+                    <div>You are landscape</div>
+                </MediaQuery>
+
+                <MediaQuery minResolution='2dppx'>
+                    <div>You are retina</div>
+                </MediaQuery>
+
             </div>
         );
     }

@@ -33,7 +33,7 @@ export default class MoviePanel extends Component {
     render() {
         const trailer = this.props.playTrailer, hasTrailer = trailer && trailer.id;
         return (
-            <div className='video-detail col-md-8'>
+            <div className='video-detail'>
                 { this.getTrailerVideoHeader( hasTrailer ) }
 
                 <MovieProfile trailer={ trailer } />

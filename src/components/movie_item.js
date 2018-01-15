@@ -26,7 +26,7 @@ export default class VideoItem extends Component {
                     </div>
 
                     <MediaQuery maxDeviceWidth={1224}>
-                        <div className='media-right'>
+                        <div className='media-right text-attribute'>
                             { this.props.data.overview }
                         </div>
                     </MediaQuery>

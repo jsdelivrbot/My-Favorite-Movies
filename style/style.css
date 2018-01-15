@@ -46,6 +46,10 @@ ul {
     padding: 0
 }
 
+.usr-btn {
+    padding-top: 5px;
+}
+
 .video-item img {
     max-width: 64px;
 }

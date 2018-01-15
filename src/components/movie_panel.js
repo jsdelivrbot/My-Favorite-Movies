@@ -79,21 +79,21 @@ export default class MoviePanel extends Component {
                         <MediaQuery maxDeviceWidth={ 1224 }>
                             <div>
                                 <button
-                                    className='btn btn-secondary full-width'
+                                    className='btn btn-secondary full-width usr-btn'
 
                                     onClick  ={ this.props.onMovieSave }
                                     >
                                     Save to favorite movies
                                 </button>
                                 <button
-                                    className='btn btn-secondary full-width'
+                                    className='btn btn-secondary full-width usr-btn'
                                     
                                     onClick  ={ this.props.onMovieRemove }
                                     >
                                     Remove from favorite movies
                                 </button>
                                 <button
-                                    className='btn btn-secondary full-width'
+                                    className='btn btn-secondary full-width usr-btn'
                                     
                                     onClick={ this.props.onFavoritesClear }
                                     >

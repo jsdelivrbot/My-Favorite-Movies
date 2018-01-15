@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
-import MediaQuery           from 'react-responsive';
 
 import * as actions from '../actions';
 import ListPanel    from './list_panel';
@@ -76,27 +75,6 @@ class App extends Component {
                             />
                     </div>
                 </div>
-
-                <div>Device Test!</div>
-
-                <MediaQuery minDeviceWidth={1224}>
-                    <div>You are a desktop or laptop</div>
-                </MediaQuery>
-                <MediaQuery maxDeviceWidth={1224}>
-                    <div>You are a tablet or mobile phone</div>
-                </MediaQuery>
-
-                <MediaQuery orientation='portrait'>
-                    <div>You are portrait</div>
-                </MediaQuery>
-                <MediaQuery orientation='landscape'>
-                    <div>You are landscape</div>
-                </MediaQuery>
-
-                <MediaQuery minResolution='2dppx'>
-                    <div>You are retina</div>
-                </MediaQuery>
-
             </div>
         );
     }

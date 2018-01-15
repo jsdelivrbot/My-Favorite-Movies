@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import MediaQuery           from 'react-responsive';
 
 
 export default class VideoItem extends Component {
@@ -23,6 +24,12 @@ export default class VideoItem extends Component {
                             src      ={ imgUrl }
                             />
                     </div>
+
+                    <MediaQuery maxDeviceWidth={1224}>
+                        <div className='media-right'>
+                            { this.props.data.overview }
+                        </div>
+                    </MediaQuery>
                 </div>
             </li>
         );

@@ -7,15 +7,9 @@ import ListPanel    from './list_panel';
 import MoviePanel   from './movie_panel';
 import SearchBar    from './search_bar';
 import {
-    CLEAR_FAVE_MOVIES,
-    FAVE_MOVIE_KEY,
-    FAVE_MOVIES_CLEARED,
-    FAVE_MOVIES_NON,
-    MOVIE_REMOVED,
-    MOVIE_UNFOUND,
-    REMOVE_MOVIE_YESNO,
-    SAVE_MOVIE
-} from '../constants/constants';
+    CLEAR_FAVE_MOVIES, FAVE_MOVIE_KEY, FAVE_MOVIES_CLEARED, FAVE_MOVIES_NON,
+    MOVIE_REMOVED, MOVIE_UNFOUND, REMOVE_MOVIE_YESNO, SAVE_MOVIE
+} from '../constants';
 
 
 class App extends Component {
